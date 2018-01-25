@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO DONE (8) Create a method that will get the user's preferred location and execute your new AsyncTask and call it loadWeatherData
     private void loadWeatherData() {
-        String location = SunshinePreferences.getPreferredWeatherLocation(this);
+        String location = SunshinePreferences.getPreferredWeatherLocation(this); // OWM id"5364022";
         new FetchWeatherTask().execute(location);
     }
 

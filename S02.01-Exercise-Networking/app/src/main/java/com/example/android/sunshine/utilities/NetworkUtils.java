@@ -37,6 +37,9 @@ public final class NetworkUtils {
     private static final String STATIC_WEATHER_URL =
             "https://andfun-weather.udacity.com/staticweather";
 
+    private static final String RND_WEATHER_URL =
+            "https://api.openweathermap.org/data/2.5/forecast?";
+
     private static final String FORECAST_BASE_URL = STATIC_WEATHER_URL;
 
     /*
@@ -52,6 +55,8 @@ public final class NetworkUtils {
     private static final String units = "metric";
     /* The number of days we want our API to return */
     private static final int numDays = 14;
+    /* Added apiKey */
+    private static final String apiKey = "6d37921e481dc9856bcc0e8aba5895ea";
 
     final static String QUERY_PARAM = "q";
     final static String LAT_PARAM = "lat";
@@ -59,6 +64,9 @@ public final class NetworkUtils {
     final static String FORMAT_PARAM = "mode";
     final static String UNITS_PARAM = "units";
     final static String DAYS_PARAM = "cnt";
+    // OWM variables
+    final static String API_PARAM = "appid";
+    final static String ID_PARAM = "id";
 
     /**
      * Builds the URL used to talk to the weather server using a location. This location is based
@@ -75,6 +83,13 @@ public final class NetworkUtils {
                 .appendQueryParameter(UNITS_PARAM, units)
                 .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
                 .build();
+
+        /* To use Open Weather Map's API
+        Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
+                .appendQueryParameter(ID_PARAM, locationQuery)
+                .appendQueryParameter(API_PARAM, apiKey)
+                .build();
+        */
 
         URL url = null;
         try {
