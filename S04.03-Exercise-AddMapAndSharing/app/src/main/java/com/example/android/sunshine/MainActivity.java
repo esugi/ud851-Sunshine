@@ -17,6 +17,7 @@ package com.example.android.sunshine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -221,8 +222,17 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
             return true;
         }
 
-        // TODO (2) Launch the map when the map menu item is clicked
+        // TODO DONE (2) Launch the map when the map menu item is clicked
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("geo")
+                .path("0,0");
+        Uri mapUri = builder.build();
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+        mapIntent.setData(mapUri);
 
+        if(mapIntent.resolveActivity(getPackageManager()) != null){
+            startActivity(mapIntent);
+        }
         return super.onOptionsItemSelected(item);
     }
 }
